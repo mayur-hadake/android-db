@@ -56,10 +56,21 @@ public class loginPage extends AppCompatActivity {
                     else {
                         res.moveToNext();
                         String id = res.getString(0);
-                        edLemail.setError(""+id.toString());
-                        Intent i = new Intent(loginPage.this,otherInfo.class);
-                        i.putExtra("id",id);
-                        startActivity(i);
+                        //edLemail.setError(""+id.toString());
+                        Cursor m = dbHelper.getmname(id);
+                        m.moveToNext();
+                        String mname = m.getString(0);
+                        if(mname==null){
+                            Intent i = new Intent(loginPage.this,otherInfo.class);
+                            i.putExtra("id",id);
+                            startActivity(i);
+                        }
+                        else {
+                            Intent i = new Intent(loginPage.this,idCard.class);
+                            i.putExtra("id",id);
+                            startActivity(i);
+                        }
+
 
                     }
                 }

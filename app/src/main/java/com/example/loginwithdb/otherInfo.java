@@ -26,7 +26,7 @@ public class otherInfo extends AppCompatActivity {
     TextView fname,lname,Oemail;
     Spinner bg,course;
     String selectBg,selectCouse;
-    Button submit;
+    Button submit,imgbtn;
     String [] scourse ={"select course","msc","bsc"};
     ArrayList acourse = new ArrayList(Arrays.asList(scourse));
     String [] sbg ={"select Blood Group","A+","B+"};
@@ -48,6 +48,7 @@ public class otherInfo extends AppCompatActivity {
         bg = findViewById(R.id.bg);
         Oemail= findViewById(R.id.Oemail);
         course = findViewById(R.id.course);
+        imgbtn = findViewById(R.id.imgbtn);
 
         db = new DBHelp(otherInfo.this);
 
@@ -58,6 +59,17 @@ public class otherInfo extends AppCompatActivity {
         cursor.moveToNext();
         String name = cursor.getString(0);
         fname.setText(name);
+
+        Cursor m = db.getmname(id);
+        m.moveToNext();
+        String mname = m.getString(0);
+        if(mname==null){
+           edMname.setEnabled(false);
+           mobno.setEnabled(false);
+           dob.setEnabled(false);
+           //add.setEnabled(false);
+        }
+        edMname.setText(mname);
 
         Cursor l = db.getlname(id);
         l.moveToNext();
@@ -119,11 +131,21 @@ public class otherInfo extends AppCompatActivity {
                     boolean res= db.upstudinfo(id,mname, selectCouse,dob.getText().toString(),selectBg,mobno.getText().toString(),eml, add.getText().toString());
                     if(res==true){
                         Toast.makeText(otherInfo.this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(otherInfo.this,homeActivity.class);
+                        startActivity(intent);
                     }
                     else{
                         Toast.makeText(otherInfo.this, "Error occur", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+        imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(otherInfo.this,homeActivity.class);
+                i.putExtra("id",1);
+                startActivity(intent);
             }
         });
 

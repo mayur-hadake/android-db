@@ -23,9 +23,10 @@ public class homeActivity extends AppCompatActivity {
 
     TextView tvwel;
     DBHelp dbHelper;
-    String name;
+    String name = "mayur";
     Button upload,upimg,show;
     ImageView img1,img2;
+    byte[] imgpp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,9 @@ public class homeActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         String id = i.getStringExtra("id");
-        Cursor cursor = dbHelper.getname(id);
-        cursor.moveToNext();
-        String name = cursor.getString(0);
+        //Cursor cursor = dbHelper.getname(id);
+       // cursor.moveToNext();
+        //String name = cursor.getString(0);
         tvwel.setText("Welcome " + name);
 
 //        button.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +67,8 @@ public class homeActivity extends AppCompatActivity {
         upimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte[] imgpp = convertImgToByteArray(img1);
-                if(dbHelper.saveimg(id)){
+                imgpp = convertImgToByteArray(img1);
+                if(dbHelper.saveimg(id,imgpp)==true){
                     Toast.makeText(homeActivity.this, "Save Successfully", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -78,11 +79,13 @@ public class homeActivity extends AppCompatActivity {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte [] bytepp = dbHelper.get(id);
+                /*byte [] bytepp = dbHelper.get(id);
                 if (bytepp!=null){
                     Bitmap bitmap = converByteArrayToBitmap(bytepp);
                     img2.setImageBitmap(bitmap);
-                }
+                }*/
+                Bitmap bitmap = converByteArrayToBitmap(imgpp);
+                img2.setImageBitmap(bitmap);
             }
         });
 

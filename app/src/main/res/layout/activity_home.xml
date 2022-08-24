@@ -19,7 +19,7 @@
     <ImageView
         android:id="@+id/img"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="98dp"
         android:layout_marginStart="152dp"
         android:layout_marginTop="188dp"
         android:src="@drawable/ic_person"

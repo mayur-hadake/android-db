@@ -5,20 +5,25 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 public class DBHelp extends SQLiteOpenHelper {
+
+
     public DBHelp(Context context) {
         super(context, "idgen", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table info(stid int primary key autoincrement,stfname TEXT," +
+        db.execSQL("create table info(stid integer primary key autoincrement,stfname TEXT," +
                 "                stmname TEXT,stlname TEXT, stemail TEXT, stpass TEXT,stcourse TEXT,stdob TEXT,stbg TEXT," +
-                "                stmobno TEXT,stemail TEXT,stadd TEXT,stimage BLOB)");
+                "                stmobno TEXT,stadd TEXT,stimage BLOB)");
     }
 
     @Override
@@ -99,21 +104,35 @@ public class DBHelp extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public boolean saveimg(String id) {
+    public boolean saveimg(String id, byte[] imgpp) {
 
         try{
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues contentValues = new ContentValues();
             //contentValues.put("stimage", id);
-            //contentValues.put("image", imgpp);
-            long studimg = db.insert("stimage",null,contentValues);
+            contentValues.put("stimage", imgpp);
+            Cursor cursor = db.rawQuery("select * from info where stid = ?",new String[] {id});
+
+            if (cursor.getCount()>0) {
+                long res = db.update("info", contentValues, "stid=?", new String[]{id});
+                if (res == -1) {
+                    return false;
+
+                } else
+                    return true;
+            }
+            else {
+                return false;
+            }
+
+            /*long studimg = db.insert("stimage",null,contentValues);
             if (studimg==-1){
                 return false;
             }
             else {
                 return true;
-            }
+            }*/
         }
         catch (Exception e){
             e.printStackTrace();
@@ -135,5 +154,36 @@ public class DBHelp extends SQLiteOpenHelper {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Cursor getmname(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursormname = db.rawQuery("select stmname from info where stid=?",new String[] {id});
+        return cursormname;
+    }
+    public Cursor getcourse(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorCourse = db.rawQuery("select stcourse from info where stid=?",new String[] {id});
+        return cursorCourse;
+    }
+    public Cursor getdob(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursordob = db.rawQuery("select stdob from info where stid=?",new String[] {id});
+        return cursordob;
+    }
+    public Cursor getbg(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursorbg = db.rawQuery("select stbg from info where stid=?",new String[] {id});
+        return cursorbg;
+    }
+    public Cursor getmob(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursormob = db.rawQuery("select stmobno from info where stid=?",new String[] {id});
+        return cursormob;
+    }
+    public Cursor getadd(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursoradd = db.rawQuery("select stadd from info where stid=?",new String[] {id});
+        return cursoradd;
     }
 }
