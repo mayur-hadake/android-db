@@ -53,49 +53,5 @@ public class idCard extends AppCompatActivity {
             String ad = allinfo.getString(10);
             add.setText(ad);
         }
-
-        /*Cursor cursor = db.getname(id);
-        cursor.moveToNext();
-        String fname = cursor.getString(0);
-
-        Cursor m = db.getmname(id);
-        m.moveToNext();
-        String mname = m.getString(0);
-
-        Cursor l = db.getlname(id);
-        l.moveToNext();
-        String lnm = l.getString(0);
-        String fullname = fname+" "+mname+" "+lnm;
-        name.setText(fullname);
-
-        Cursor c = db.getcourse(id);
-        c.moveToNext();
-        String crc = c.getString(0);
-        course.setText(crc);
-
-        Cursor d = db.getdob(id);
-        d.moveToNext();
-        String bod = d.getString(0);
-        dob.setText(bod);
-
-        Cursor b = db.getbg(id);
-        b.moveToNext();
-        String bld = b.getString(0);
-        bg.setText(bld);
-
-        Cursor mo = db.getmob(id);
-        mo.moveToNext();
-        String mob = mo.getString(0);
-        mobno.setText(mob);
-
-        Cursor email = db.getemail(id);
-        email.moveToNext();
-        String eml = email.getString(0);
-        idemail.setText(eml);
-
-        Cursor a = db.getadd(id);
-        a.moveToNext();
-        String ad = a.getString(0);
-        add.setText(ad);*/
     }
 }
