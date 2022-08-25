@@ -19,13 +19,13 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class homeActivity extends AppCompatActivity {
+public class selectImg extends AppCompatActivity {
 
     TextView tvwel;
     DBHelp dbHelper;
-    String name = "mayur";
-    Button upload,upimg,show;
-    ImageView img1,img2;
+    String name = "";
+    Button upload,upimg,show,gotoid;
+    ImageView img1,img2,idimg;
     byte[] imgpp;
 
     @Override
@@ -39,14 +39,17 @@ public class homeActivity extends AppCompatActivity {
         img1 = findViewById(R.id.img);
         img2 = findViewById(R.id.img2);
         show = findViewById(R.id.show);
+        gotoid = findViewById(R.id.gotoid);
+        idimg = findViewById(R.id.idimg);
 
-        dbHelper = new DBHelp(homeActivity.this);
+        dbHelper = new DBHelp(selectImg.this);
 
         Intent i = getIntent();
         String id = i.getStringExtra("id");
-        //Cursor cursor = dbHelper.getname(id);
-       // cursor.moveToNext();
-        //String name = cursor.getString(0);
+
+        Cursor cursor = dbHelper.getname(id);
+        cursor.moveToNext();
+        String name = cursor.getString(0);
         tvwel.setText("Welcome " + name);
 
 //        button.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +72,10 @@ public class homeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 imgpp = convertImgToByteArray(img1);
                 if(dbHelper.saveimg(id,imgpp)==true){
-                    Toast.makeText(homeActivity.this, "Save Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(selectImg.this, "Save Successfully", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(homeActivity.this, "failed to save", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(selectImg.this, "failed to save", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -86,6 +89,14 @@ public class homeActivity extends AppCompatActivity {
                 }*/
                 Bitmap bitmap = converByteArrayToBitmap(imgpp);
                 img2.setImageBitmap(bitmap);
+            }
+        });
+        gotoid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(selectImg.this,idCard.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
             }
         });
 
@@ -114,6 +125,8 @@ public class homeActivity extends AppCompatActivity {
                 if (resultCode==RESULT_OK){
                     Uri selectImgUri = data.getData();
                     img1.setImageURI(selectImgUri);
+                    //idimg.setImageURI(selectImgUri);
+
                 }
         }
     }

@@ -15,7 +15,13 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static Pattern Password_Pattern =
+            Pattern.compile("^"+
+                    "(?=.*[a-zA-Z])"+
+                    "(?=.*[0-9])"+
+                    "(?=.*[@#$%^&+=])"+
+                    ".{6,}"+
+                    "$");
     EditText fname,lname,email,pass,cpass;
     Button submit,gLogin,mb;
     DBHelp dbHelper;
@@ -46,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
                     email.setError("Enter valid Email");
+                }
+                else if (!Password_Pattern.matcher(pass.getText().toString()).matches()){
+                    pass.setError("Enter Strong Password");
                 }
                 else if (!(pass.getText().toString()).equals(cpass.getText().toString())){
                     cpass.setError("Enter same password");

@@ -25,9 +25,9 @@ public class otherInfo extends AppCompatActivity {
     EditText edMname,dob,mobno,add;
     TextView fname,lname,Oemail;
     Spinner bg,course;
-    String selectBg,selectCouse;
+    String selectBg,selectCouse,id;
     Button submit,imgbtn;
-    String [] scourse ={"select course","msc","bsc"};
+    String [] scourse ={"select course","M.Sc. (Computer Science)","B.Sc.(Computer Science"};
     ArrayList acourse = new ArrayList(Arrays.asList(scourse));
     String [] sbg ={"select Blood Group","A+","B+"};
     ArrayList abg = new ArrayList(Arrays.asList(sbg));
@@ -53,7 +53,7 @@ public class otherInfo extends AppCompatActivity {
         db = new DBHelp(otherInfo.this);
 
         Intent i = getIntent();
-        String id = i.getStringExtra("id");
+        id = i.getStringExtra("id");
 
         Cursor cursor = db.getname(id);
         cursor.moveToNext();
@@ -63,11 +63,12 @@ public class otherInfo extends AppCompatActivity {
         Cursor m = db.getmname(id);
         m.moveToNext();
         String mname = m.getString(0);
-        if(mname==null){
+        if(mname!=null){
            edMname.setEnabled(false);
            mobno.setEnabled(false);
            dob.setEnabled(false);
-           //add.setEnabled(false);
+           add.setEnabled(false);
+           submit.setEnabled(false);
         }
         edMname.setText(mname);
 
@@ -80,6 +81,26 @@ public class otherInfo extends AppCompatActivity {
         email.moveToNext();
         String eml = email.getString(0);
         Oemail.setText(eml);
+
+        Cursor c = db.getcourse(id);
+        c.moveToNext();
+        String crc = c.getString(0);
+
+
+        Cursor d = db.getdob(id);
+        d.moveToNext();
+        String bod = d.getString(0);
+        dob.setText(bod);
+
+        Cursor mo = db.getmob(id);
+        mo.moveToNext();
+        String mob = mo.getString(0);
+        mobno.setText(mob);
+
+        Cursor a = db.getadd(id);
+        a.moveToNext();
+        String ad = a.getString(0);
+        add.setText(ad);
 
         //adapter for course
         ArrayAdapter cad = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,acourse);
@@ -131,7 +152,7 @@ public class otherInfo extends AppCompatActivity {
                     boolean res= db.upstudinfo(id,mname, selectCouse,dob.getText().toString(),selectBg,mobno.getText().toString(),eml, add.getText().toString());
                     if(res==true){
                         Toast.makeText(otherInfo.this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(otherInfo.this,homeActivity.class);
+                        Intent intent = new Intent(otherInfo.this,selectImg.class);
                         startActivity(intent);
                     }
                     else{
@@ -143,8 +164,9 @@ public class otherInfo extends AppCompatActivity {
         imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(otherInfo.this,homeActivity.class);
-                i.putExtra("id",1);
+                Toast.makeText(otherInfo.this, "id is :"+id, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(otherInfo.this,selectImg.class);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });

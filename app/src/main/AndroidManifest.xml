@@ -23,7 +23,7 @@
             android:name=".otherInfo"
             android:exported="false" />
         <activity
-            android:name=".homeActivity"
+            android:name=".selectImg"
             android:exported="true" />
         <activity
             android:name=".loginPage"

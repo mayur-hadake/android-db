@@ -61,6 +61,12 @@ public class DBHelp extends SQLiteOpenHelper {
         Cursor cursorlname = db.rawQuery("select stlname from info where stid=?",new String[] {id});
         return cursorlname;
     }
+    public Cursor getAllInfo(String id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor allinfo = db.rawQuery("select * from info where stid=?",new String[]{id});
+        return allinfo;
+    }
+
     public Cursor getemail(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursoremail = db.rawQuery("select stemail from info where stid=?",new String[] {id});

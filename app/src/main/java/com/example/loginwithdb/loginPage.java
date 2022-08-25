@@ -60,7 +60,7 @@ public class loginPage extends AppCompatActivity {
                         Cursor m = dbHelper.getmname(id);
                         m.moveToNext();
                         String mname = m.getString(0);
-                        if(mname==null){
+                        /*if(mname==null){
                             Intent i = new Intent(loginPage.this,otherInfo.class);
                             i.putExtra("id",id);
                             startActivity(i);
@@ -69,8 +69,10 @@ public class loginPage extends AppCompatActivity {
                             Intent i = new Intent(loginPage.this,idCard.class);
                             i.putExtra("id",id);
                             startActivity(i);
-                        }
-
+                        }*/
+                        Intent i = new Intent(loginPage.this,otherInfo.class);
+                        i.putExtra("id",id);
+                        startActivity(i);
 
                     }
                 }
