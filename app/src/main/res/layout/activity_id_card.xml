@@ -32,7 +32,6 @@
             android:layout_marginStart="124dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="125dp"
-            android:background="@drawable/ic_person"
             android:focusedByDefault="true"
             app:layout_constraintEnd_toEndOf="@+id/myview"
             app:layout_constraintStart_toStartOf="@+id/myview"
@@ -231,6 +230,16 @@
             app:layout_constraintStart_toStartOf="@+id/myview"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="572dp"
+            android:text="show dp"
+            app:layout_constraintStart_toStartOf="@+id/myview"
+            app:layout_constraintTop_toTopOf="@+id/myview" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

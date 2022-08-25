@@ -17,6 +17,9 @@
         android:theme="@style/Theme.LoginWithDb"
         tools:targetApi="31">
         <activity
+            android:name=".selectLogin"
+            android:exported="false" />
+        <activity
             android:name=".idCard"
             android:exported="false" />
         <activity

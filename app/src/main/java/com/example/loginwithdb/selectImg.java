@@ -23,10 +23,10 @@ public class selectImg extends AppCompatActivity {
 
     TextView tvwel;
     DBHelp dbHelper;
-    String name = "";
+    String name = "",id;
     Button upload,upimg,show,gotoid;
     ImageView img1,img2,idimg;
-    byte[] imgpp;
+    byte[] imgpp,bytepp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class selectImg extends AppCompatActivity {
         dbHelper = new DBHelp(selectImg.this);
 
         Intent i = getIntent();
-        String id = i.getStringExtra("id");
+        id = i.getStringExtra("id");
 
         Cursor cursor = dbHelper.getname(id);
         cursor.moveToNext();
@@ -82,13 +82,11 @@ public class selectImg extends AppCompatActivity {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*byte [] bytepp = dbHelper.get(id);
+                bytepp = dbHelper.get(id);
                 if (bytepp!=null){
                     Bitmap bitmap = converByteArrayToBitmap(bytepp);
                     img2.setImageBitmap(bitmap);
-                }*/
-                Bitmap bitmap = converByteArrayToBitmap(imgpp);
-                img2.setImageBitmap(bitmap);
+                }
             }
         });
         gotoid.setOnClickListener(new View.OnClickListener() {

@@ -39,16 +39,16 @@ public class loginPage extends AppCompatActivity {
                 }
                 else{
                     boolean ins = dbHelper.checkidpass(edLemail.getText().toString(),edLpass.getText().toString());
-                    if (ins==true){
+                    /*if (ins==true){
                         /*Toast.makeText(loginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(loginPage.this,homeActivity.class);
                         i.putExtra("email",edLemail.getText().toString());
-                        startActivity(i);*/
+                        startActivity(i);
 
                     }
                     else {
                         Toast.makeText(loginPage.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                     Cursor res = dbHelper.getid(edLemail.getText().toString(),edLpass.getText().toString());
                     if (res.getCount()==0){
                         Toast.makeText(loginPage.this, "No data exist in DB", Toast.LENGTH_SHORT).show();
@@ -56,24 +56,27 @@ public class loginPage extends AppCompatActivity {
                     else {
                         res.moveToNext();
                         String id = res.getString(0);
-                        //edLemail.setError(""+id.toString());
-                        Cursor m = dbHelper.getmname(id);
-                        m.moveToNext();
-                        String mname = m.getString(0);
-                        /*if(mname==null){
-                            Intent i = new Intent(loginPage.this,otherInfo.class);
-                            i.putExtra("id",id);
-                            startActivity(i);
-                        }
-                        else {
-                            Intent i = new Intent(loginPage.this,idCard.class);
-                            i.putExtra("id",id);
-                            startActivity(i);
-                        }*/
-                        Intent i = new Intent(loginPage.this,otherInfo.class);
-                        i.putExtra("id",id);
-                        startActivity(i);
 
+                        Cursor allinfo = dbHelper.getAllInfo(id);
+                        while (allinfo.moveToNext()){
+                            String mname = allinfo.getString(2);
+                            byte []dp = allinfo.getBlob(11);
+                            if (mname==null){
+                                Intent i = new Intent(loginPage.this,otherInfo.class);
+                                i.putExtra("id",id);
+                                startActivity(i);
+                            }
+                            else if (dp==null){
+                                Intent intent = new Intent(loginPage.this,selectImg.class);
+                                intent.putExtra("id",id);
+                                startActivity(intent);
+                            }
+                            else {
+                                Intent i = new Intent(loginPage.this,idCard.class);
+                                i.putExtra("id",id);
+                                startActivity(i);
+                            }
+                        }
                     }
                 }
             }

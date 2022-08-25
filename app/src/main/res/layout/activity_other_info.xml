@@ -118,7 +118,7 @@
         android:id="@+id/infobtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="108dp"
         android:text="submit"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,9 +128,21 @@
         android:id="@+id/imgbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
+        android:layout_marginStart="164dp"
         android:layout_marginTop="36dp"
         android:text="select img"
+        app:layout_constraintStart_toEndOf="@+id/infobtn"
+        app:layout_constraintTop_toBottomOf="@+id/add" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="41dp"
+        android:text="Edit"
+        app:layout_constraintEnd_toStartOf="@+id/imgbtn"
         app:layout_constraintStart_toEndOf="@+id/infobtn"
         app:layout_constraintTop_toBottomOf="@+id/add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

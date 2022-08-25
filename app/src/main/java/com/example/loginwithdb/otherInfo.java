@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,11 +27,12 @@ public class otherInfo extends AppCompatActivity {
     TextView fname,lname,Oemail;
     Spinner bg,course;
     String selectBg,selectCouse,id;
-    Button submit,imgbtn;
+    Button submit,imgbtn,edit;
     String [] scourse ={"select course","M.Sc. (Computer Science)","B.Sc.(Computer Science"};
     ArrayList acourse = new ArrayList(Arrays.asList(scourse));
     String [] sbg ={"select Blood Group","A+","B+"};
     ArrayList abg = new ArrayList(Arrays.asList(sbg));
+    byte [] dp;
 
 
     @Override
@@ -49,11 +51,13 @@ public class otherInfo extends AppCompatActivity {
         Oemail= findViewById(R.id.Oemail);
         course = findViewById(R.id.course);
         imgbtn = findViewById(R.id.imgbtn);
+        edit = findViewById(R.id.edit);
 
         db = new DBHelp(otherInfo.this);
 
         Intent i = getIntent();
         id = i.getStringExtra("id");
+        edit.setEnabled(false);
 
         Cursor cursor = db.getname(id);
         cursor.moveToNext();
@@ -69,8 +73,21 @@ public class otherInfo extends AppCompatActivity {
            dob.setEnabled(false);
            add.setEnabled(false);
            submit.setEnabled(false);
+           edit.setEnabled(true);
+            submit.setText("Update");
         }
         edMname.setText(mname);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edMname.setEnabled(true);
+                mobno.setEnabled(true);
+                dob.setEnabled(true);
+                add.setEnabled(true);
+                submit.setEnabled(true);
+            }
+        });
 
         Cursor l = db.getlname(id);
         l.moveToNext();
@@ -152,7 +169,9 @@ public class otherInfo extends AppCompatActivity {
                     boolean res= db.upstudinfo(id,mname, selectCouse,dob.getText().toString(),selectBg,mobno.getText().toString(),eml, add.getText().toString());
                     if(res==true){
                         Toast.makeText(otherInfo.this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(otherInfo.this,selectImg.class);
+                        intent.putExtra("id",id);
                         startActivity(intent);
                     }
                     else{
@@ -161,7 +180,7 @@ public class otherInfo extends AppCompatActivity {
                 }
             }
         });
-        imgbtn.setOnClickListener(new View.OnClickListener() {
+        /*imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(otherInfo.this, "id is :"+id, Toast.LENGTH_SHORT).show();
@@ -169,7 +188,7 @@ public class otherInfo extends AppCompatActivity {
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 }
