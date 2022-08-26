@@ -2,6 +2,7 @@ package com.example.loginwithdb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
@@ -19,12 +21,13 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class otherInfo extends AppCompatActivity {
 
     DBHelp db;
-    EditText edMname,dob,mobno,add;
-    TextView fname,lname,Oemail;
+    EditText edMname,mobno,add;
+    TextView fname,lname,dob,Oemail;
     Spinner bg,course;
     String selectBg,selectCouse,id;
     Button submit,imgbtn,edit;
@@ -131,7 +134,7 @@ public class otherInfo extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                Toast.makeText(otherInfo.this, "Please Select course", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -147,36 +150,64 @@ public class otherInfo extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                Toast.makeText(otherInfo.this, "Please Select BG", Toast.LENGTH_SHORT).show();
+            }
+        });
+        final Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog dialog = new DatePickerDialog(otherInfo.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month+1;
+                        String date = day+"/"+month+"/"+year;
+                        dob.setText(date);
+                    }
+                },year,month,day);
+                dialog.show();
             }
         });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectCouse.equals("")){
+                if (selectCouse.equals("select course")){
                     Toast.makeText(otherInfo.this, "Course is not selected", Toast.LENGTH_SHORT).show();
                 }
+                else if (selectBg.equals("select Blood Group")){
+                    Toast.makeText(otherInfo.this, "Blood group is not selected", Toast.LENGTH_SHORT).show();
+                }
                 else {
-                    //Toast.makeText(otherInfo.this, "getting value " +selectCouse, Toast.LENGTH_SHORT).show();
-                    String mname = edMname.getText().toString();
-
-                    //Toast.makeText(otherInfo.this, "id="+id+" name="+name+" mname="+mname+" lname="+lnm, Toast.LENGTH_LONG).show();
-                    //Toast.makeText(otherInfo.this, "course="+selectCouse+" dob="+dob.getText().toString()+" bg="+selectBg, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(otherInfo.this, "mobno="+mobno.getText().toString()+" email="+eml+" add="+add.getText().toString(), Toast.LENGTH_SHORT).show();
-                    add.setError(id+" "+name+" "+mname+" "+lnm+" "+selectCouse+" "+dob.getText().toString()+" "+selectBg+" "+mobno.getText().toString()+" "+eml+" "+add.getText().toString());
-                    
-                    boolean res= db.upstudinfo(id,mname, selectCouse,dob.getText().toString(),selectBg,mobno.getText().toString(),eml, add.getText().toString());
-                    if(res==true){
-                        Toast.makeText(otherInfo.this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(otherInfo.this,selectImg.class);
-                        intent.putExtra("id",id);
-                        startActivity(intent);
+                    if (edMname.getText().toString().equals("")){
+                        edMname.setError("Enter Middle Name");
                     }
-                    else{
-                        Toast.makeText(otherInfo.this, "Error occur", Toast.LENGTH_SHORT).show();
+                    else if (dob.getText().toString().equals("")){
+                        dob.setError("Select dob");
                     }
+                    else if (mobno.getText().toString().equals("")){
+                        mobno.setError("Enter Mobile No");
+                    }
+                    else if (add.getText().toString().equals("")){
+                        add.setError("Enter Address");
+                    }
+                    else {
+                        boolean res= db.upstudinfo(id, edMname.getText().toString(), selectCouse,dob.getText().toString(),selectBg,mobno.getText().toString(),eml, add.getText().toString());
+                        if(res==true){
+                            Toast.makeText(otherInfo.this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(otherInfo.this,selectImg.class);
+                            intent.putExtra("id",id);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(otherInfo.this, "Error occur", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 }
             }
         });

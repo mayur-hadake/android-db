@@ -1,148 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".otherInfo">
+    android:layout_height="wrap_content"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Fill Other Information"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bgimg"
+        tools:context=".otherInfo">
 
-    <EditText
-        android:id="@+id/edMname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="37dp"
-        android:ems="10"
-        android:hint="Enter Middle name"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/tvfn"
-        app:layout_constraintTop_toBottomOf="@+id/info" />
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="48dp"
+            android:text="Fill Other Information"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edDob"
-        android:layout_width="207dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:hint="Enter DOB"
-        android:inputType="date|textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/tvln"
-        app:layout_constraintTop_toBottomOf="@+id/edMname" />
+        <EditText
+            android:id="@+id/edMname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="37dp"
+            android:ems="10"
+            android:gravity="center|left"
+            android:hint="Enter Middle name"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/tvfn"
+            app:layout_constraintTop_toBottomOf="@+id/info" />
 
-    <EditText
-        android:id="@+id/edmno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="Enter Mobile No"
-        android:inputType="date|textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg" />
+        <EditText
+            android:id="@+id/edmno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:hint="Enter Mobile No"
+            android:inputType="date|textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg" />
 
-    <EditText
-        android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="112dp"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="date|textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg" />
+        <EditText
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="112dp"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="date|textPersonName"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg" />
 
-    <TextView
-        android:id="@+id/tvfn"
-        android:layout_width="121dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info" />
+        <TextView
+            android:id="@+id/tvfn"
+            android:layout_width="121dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info" />
 
-    <TextView
-        android:id="@+id/tvln"
-        android:layout_width="121dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edMname" />
+        <TextView
+            android:id="@+id/tvln"
+            android:layout_width="121dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edMname" />
 
-    <TextView
-        android:id="@+id/Oemail"
-        android:layout_width="207dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course" />
+        <TextView
+            android:id="@+id/edDob"
+            android:layout_width="207dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="36dp"
+            android:gravity="center|left"
+            android:hint="Select DOB"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/tvln"
+            app:layout_constraintTop_toBottomOf="@+id/edMname" />
 
-    <Spinner
-        android:id="@+id/course"
-        android:layout_width="405dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvln" />
+        <TextView
+            android:id="@+id/Oemail"
+            android:layout_width="207dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="23dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/course" />
 
-    <Spinner
-        android:id="@+id/bg"
-        android:layout_width="151dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course" />
+        <Spinner
+            android:id="@+id/course"
+            android:layout_width="405dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="23dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvln" />
 
-    <Button
-        android:id="@+id/infobtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
-        android:text="submit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edmno" />
+        <Spinner
+            android:id="@+id/bg"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="244dp"
+            android:layout_marginTop="23dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/course" />
 
-    <Button
-        android:id="@+id/imgbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="36dp"
-        android:text="select img"
-        app:layout_constraintStart_toEndOf="@+id/infobtn"
-        app:layout_constraintTop_toBottomOf="@+id/add" />
+        <Button
+            android:id="@+id/infobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="108dp"
+            android:text="submit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edmno" />
 
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="41dp"
-        android:text="Edit"
-        app:layout_constraintEnd_toStartOf="@+id/imgbtn"
-        app:layout_constraintStart_toEndOf="@+id/infobtn"
-        app:layout_constraintTop_toBottomOf="@+id/add" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="36dp"
+            android:text="select img"
+            app:layout_constraintStart_toEndOf="@+id/infobtn"
+            app:layout_constraintTop_toBottomOf="@+id/add" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="41dp"
+            android:text="Edit"
+            app:layout_constraintEnd_toStartOf="@+id/imgbtn"
+            app:layout_constraintStart_toEndOf="@+id/infobtn"
+            app:layout_constraintTop_toBottomOf="@+id/add" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
