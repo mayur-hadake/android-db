@@ -57,10 +57,10 @@ public class loginPage extends AppCompatActivity {
                         res.moveToNext();
                         String id = res.getString(0);
 
-                        Cursor allinfo = dbHelper.getAllInfo(id);
+                        Cursor allinfo = dbHelper.mnameandphoto(id);
                         while (allinfo.moveToNext()){
-                            String mname = allinfo.getString(2);
-                            byte []dp = allinfo.getBlob(11);
+                            String mname = allinfo.getString(0);
+                            byte []dp = allinfo.getBlob(1);
                             if (mname==null){
                                 Intent i = new Intent(loginPage.this,otherInfo.class);
                                 i.putExtra("id",id);

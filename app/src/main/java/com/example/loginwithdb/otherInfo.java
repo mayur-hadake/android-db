@@ -211,7 +211,7 @@ public class otherInfo extends AppCompatActivity {
                 }
             }
         });
-        /*imgbtn.setOnClickListener(new View.OnClickListener() {
+        imgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(otherInfo.this, "id is :"+id, Toast.LENGTH_SHORT).show();
@@ -219,7 +219,7 @@ public class otherInfo extends AppCompatActivity {
                 intent.putExtra("id",id);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 }

@@ -31,7 +31,7 @@ public class selectImg extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_selectimg);
 
         tvwel = findViewById(R.id.tvwel);
         upload = findViewById(R.id.Upload);
@@ -41,6 +41,10 @@ public class selectImg extends AppCompatActivity {
         show = findViewById(R.id.show);
         gotoid = findViewById(R.id.gotoid);
         idimg = findViewById(R.id.idimg);
+
+        upimg.setEnabled(false);
+        show.setEnabled(false);
+        gotoid.setEnabled(false);
 
         dbHelper = new DBHelp(selectImg.this);
 
@@ -65,7 +69,10 @@ public class selectImg extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 takePictureFromGallery();
+                upimg.setEnabled(true);
+
             }
+
         });
         upimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +84,9 @@ public class selectImg extends AppCompatActivity {
                 else{
                     Toast.makeText(selectImg.this, "failed to save", Toast.LENGTH_SHORT).show();
                 }
+                upload.setEnabled(false);
+                upimg.setEnabled(false);
+                show.setEnabled(true);
             }
         });
         show.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +96,12 @@ public class selectImg extends AppCompatActivity {
                 if (bytepp!=null){
                     Bitmap bitmap = converByteArrayToBitmap(bytepp);
                     img2.setImageBitmap(bitmap);
+                    Toast.makeText(selectImg.this, "fetch successfully", Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    Toast.makeText(selectImg.this, "something wents Wrong", Toast.LENGTH_SHORT).show();
+                }
+                gotoid.setEnabled(true);
             }
         });
         gotoid.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +121,7 @@ public class selectImg extends AppCompatActivity {
     private byte[] convertImgToByteArray(ImageView imageView){
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
 

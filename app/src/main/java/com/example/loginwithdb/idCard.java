@@ -87,53 +87,6 @@ public class idCard extends AppCompatActivity {
                 idimg.setImageResource(R.drawable.ic_person);
             }
         }
-        downloadbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("size", "size :"+constraintLayout.getWidth()+" "+constraintLayout.getHeight());
-                bitmap = loadBitmap(constraintLayout,constraintLayout.getWidth(),constraintLayout.getHeight());
-                createPdf();
-            }
-        });
-    }
-
-    private void createPdf() {
-        WindowManager windowManager = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        float width = displayMetrics.widthPixels;
-        float height = displayMetrics.heightPixels;
-        int convetWidth = (int)width,convetHeight =(int)height;
-
-        PdfDocument document = new PdfDocument();
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convetWidth,convetHeight,1).create();
-        PdfDocument.Page page= document.startPage(pageInfo);
-        Canvas canvas = page.getCanvas();
-        Paint paint = new Paint();
-        canvas.drawPaint(paint);
-        bitmap =Bitmap.createScaledBitmap(bitmap,convetWidth,convetHeight,true);
-        canvas.drawBitmap(bitmap,0,0,null);
-        document.finishPage(page);
-        
-        //Store id in file
-        String loc = "/download/idcard.pdf";
-        File file = new File(loc);
-        try {
-            document.writeTo(new FileOutputStream(file));
-        }catch (IOException e){
-            e.printStackTrace();
-            Toast.makeText(this, "Something Wrong "+e.toString(), Toast.LENGTH_SHORT).show();
-            
-            document.close();
-            Toast.makeText(this, "Successfully Downloaded ", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private Bitmap loadBitmap(View v, int width, int height) {
-        Bitmap bitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        v.draw(canvas);
-        return bitmap;
     }
 
     private Bitmap converByteArrayToBitmap(byte[] bytes){

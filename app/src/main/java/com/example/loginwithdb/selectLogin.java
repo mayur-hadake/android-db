@@ -24,5 +24,12 @@ public class selectLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        teacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(selectLogin.this,fetchData.class);
+                startActivity(intent);
+            }
+        });
     }
 }

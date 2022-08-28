@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">loginWithDb</string>
+    <string name="app_name">Id Card</string>
+    <string name="Accept">Accept</string>
+    <string name="Delete">delete</string>
 </resources>

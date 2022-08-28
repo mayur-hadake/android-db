@@ -66,6 +66,11 @@ public class DBHelp extends SQLiteOpenHelper {
         Cursor allinfo = db.rawQuery("select * from info where stid=?",new String[]{id});
         return allinfo;
     }
+    public Cursor studVarification(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor studvarification = db.rawQuery("select * from info order by stid desc",null);
+        return studvarification;
+    }
 
     public Cursor getemail(String id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -96,7 +101,7 @@ public class DBHelp extends SQLiteOpenHelper {
     }
     public boolean checkidpass(String email,String pass){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from info where stemail=? and stpass=?",new String[]{email,pass});
+        Cursor cursor = db.rawQuery("select stemail and stpass from info where stemail=? and stpass=?",new String[]{email,pass});
         if (cursor.getCount()>0){
             return true;
         }
@@ -132,13 +137,6 @@ public class DBHelp extends SQLiteOpenHelper {
                 return false;
             }
 
-            /*long studimg = db.insert("stimage",null,contentValues);
-            if (studimg==-1){
-                return false;
-            }
-            else {
-                return true;
-            }*/
         }
         catch (Exception e){
             e.printStackTrace();
@@ -165,6 +163,11 @@ public class DBHelp extends SQLiteOpenHelper {
     public Cursor getmname(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursormname = db.rawQuery("select stmname from info where stid=?",new String[] {id});
+        return cursormname;
+    }
+    public Cursor mnameandphoto(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursormname = db.rawQuery("select stmname ,stimage from info where stid=?",new String[] {id});
         return cursormname;
     }
     public Cursor getcourse(String id) {
