@@ -59,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 else if (!(pass.getText().toString()).equals(cpass.getText().toString())){
                     cpass.setError("Enter same password");
                 }
+                else if (dbHelper.getmail(email.getText().toString())){
+                    email.setError("email is already used");
+                }
                 else{
+
                     boolean ins = dbHelper.insertdata(fname.getText().toString(),lname.getText().toString(),email.getText().toString(),cpass.getText().toString());
                     if (ins==true){
                         Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();

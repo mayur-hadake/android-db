@@ -5,12 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 public class DBHelp extends SQLiteOpenHelper {
 
@@ -76,6 +70,16 @@ public class DBHelp extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursoremail = db.rawQuery("select stemail from info where stid=?",new String[] {id});
         return cursoremail;
+    }
+    public boolean getmail(String mail){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from info where stemail=?",new String[] {mail});
+        if (cursor.getCount()>0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public boolean upstudinfo(String id,String mname,String course,String dob,String bg,String mobno,String email,String add){
         SQLiteDatabase db = this.getWritableDatabase();

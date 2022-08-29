@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Id Card</string>
+    <string name="app_name">Id Generator</string>
     <string name="Accept">Accept</string>
-    <string name="Delete">delete</string>
+    <string name="Delete">Decline</string>
 </resources>
