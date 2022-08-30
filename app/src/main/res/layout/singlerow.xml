@@ -19,10 +19,9 @@
         <ImageView
             android:id="@+id/dimg"
             android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_height="125dp"
             android:layout_gravity="left"
             android:layout_marginTop="10dp" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,16 +45,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="User Mobile"
+                android:textColor="#7F7C80"
                 android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/displayemail"
                 android:layout_width="250dp"
+                android:textColor="#7F7C80"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="User Email"
                 android:textSize="25sp" />
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -73,7 +74,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:text="@string/Delete" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
 

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.AbsListView;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class fetchData extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_fetch_data);
         recyclerView = findViewById(R.id.recview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

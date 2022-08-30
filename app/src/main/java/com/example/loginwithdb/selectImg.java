@@ -78,6 +78,8 @@ public class selectImg extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imgpp = convertImgToByteArray(img1);
+                long imglen = imgpp.length;
+                Toast.makeText(selectImg.this, "size of img ="+imglen/1024+"kb", Toast.LENGTH_SHORT).show();
                 if(dbHelper.saveimg(id,imgpp)==true){
                     Toast.makeText(selectImg.this, "Save Successfully", Toast.LENGTH_SHORT).show();
                 }
