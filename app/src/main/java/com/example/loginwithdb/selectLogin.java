@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class selectLogin extends AppCompatActivity {
     Button teacher,student;
@@ -31,5 +32,6 @@ public class selectLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

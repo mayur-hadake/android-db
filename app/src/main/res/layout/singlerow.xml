@@ -1,5 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -51,10 +52,10 @@
             <TextView
                 android:id="@+id/displayemail"
                 android:layout_width="250dp"
-                android:textColor="#7F7C80"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="User Email"
+                android:textColor="#7F7C80"
                 android:textSize="25sp" />
             <!--<LinearLayout
                 android:layout_width="match_parent"

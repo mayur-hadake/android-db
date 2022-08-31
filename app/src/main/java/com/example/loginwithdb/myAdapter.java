@@ -8,15 +8,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
     ArrayList<model> dataholder;
+    private selectListner listner;
 
-    public myAdapter(ArrayList<model> dataholder) {
+    public myAdapter(ArrayList<model> dataholder,selectListner listner) {
         this.dataholder = dataholder;
+        this.listner= listner;
     }
 
     @NonNull
@@ -33,6 +36,13 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
         holder.dmobno.setText(dataholder.get(position).getMobno());
         holder.demail.setText(dataholder.get(position).getEmail());
         holder.dimg.setImageBitmap(dataholder.get(position).getBitmap());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              listner.onItemClicked(dataholder.get(position));
+            }
+        });
     }
 
 
@@ -44,12 +54,14 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
     class myviewholder extends RecyclerView.ViewHolder{
         TextView dname,dmobno,demail;
         ImageView dimg;
+        CardView cardView;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             dname = itemView.findViewById(R.id.displayname);
             dmobno = itemView.findViewById(R.id.displaymobno);
             demail = itemView.findViewById(R.id.displayemail);
             dimg = itemView.findViewById(R.id.dimg);
+            cardView = itemView.findViewById(R.id.main_container);
         }
     }
 }

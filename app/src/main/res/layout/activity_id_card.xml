@@ -14,7 +14,19 @@
         android:layout_height="match_parent"
 
         tools:context=".idCard">
-
+        <View
+            android:id="@+id/myview1"
+            android:layout_width="355dp"
+            android:layout_height="607dp"
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="33dp"
+            android:background="@drawable/box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
         <View
             android:id="@+id/myview"
             android:layout_width="347dp"
@@ -256,11 +268,19 @@
             android:id="@+id/downloadbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="321dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/myview"
             app:layout_constraintTop_toBottomOf="@+id/myview"
             app:srcCompat="@android:drawable/stat_sys_download" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="33dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="@+id/myview"
+            app:srcCompat="@drawable/sign" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

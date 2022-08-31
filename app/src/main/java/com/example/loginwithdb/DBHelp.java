@@ -118,6 +118,11 @@ public class DBHelp extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select stid from info where stemail=? and stpass=?",new String[]{email,pass});
         return cursor;
     }
+    public Cursor getidbyemail(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select stid from info where stemail=?",new String[]{email});
+        return cursor;
+    }
 
     public boolean saveimg(String id, byte[] imgpp) {
 
