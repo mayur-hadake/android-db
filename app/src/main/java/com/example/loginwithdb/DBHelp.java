@@ -17,7 +17,7 @@ public class DBHelp extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table info(stid integer primary key autoincrement,stfname TEXT," +
                 "                stmname TEXT,stlname TEXT, stemail TEXT, stpass TEXT,stcourse TEXT,stdob TEXT,stbg TEXT," +
-                "                stmobno TEXT,stadd TEXT,stimage BLOB)");
+                "                stmobno TEXT,stadd TEXT,stimage BLOB,ststatus integer)");
     }
 
     @Override
@@ -94,6 +94,23 @@ public class DBHelp extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select * from info where stid = ?",new String[] {id});
         if (cursor.getCount()>0) {
             long res = db.update("info", contentValues, "stid=?", new String[]{id});
+            if (res == -1) {
+                return false;
+            } else
+                return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean upstudstatus(String mail,int state){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ststatus",state);
+
+        Cursor cursor = db.rawQuery("select * from info where stemail = ?",new String[] {mail});
+        if (cursor.getCount()>0) {
+            long res = db.update("info", contentValues, "stemail=?", new String[]{mail});
             if (res == -1) {
                 return false;
             } else

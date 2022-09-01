@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.widget.AbsListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,8 +45,8 @@ public class fetchData extends AppCompatActivity implements selectListner{
             Log.d("mobile no getting", ""+mobno);
             Log.d("name getting", ""+name);
             Log.d("email getting", ""+email);
-//            if (mobno.equals(null)){
-//                mobno ="9988776655";
+//            if (mn.isEmpty()){
+//                name = fn+" "+ln;
 //            }
             model obj;
             obj = new model(name,mobno,email,bitmap);
@@ -66,6 +67,14 @@ public class fetchData extends AppCompatActivity implements selectListner{
         Intent intent = new Intent(getApplicationContext(),idCard.class);
         intent.putExtra("id",id);
         startActivity(intent);
+    }
+    public void onAcptBtnClickList(model mod){
+        boolean res = dbHelp.upstudstatus(mod.getEmail(),1);
+        Toast.makeText(this, "Id Card Accepted ", Toast.LENGTH_SHORT).show();
 
+    }
+    public void onDltBtnClickList(model mod){
+        boolean res = dbHelp.upstudstatus(mod.getEmail(),2);
+        Toast.makeText(this, "Id Card Rejected ", Toast.LENGTH_SHORT).show();
     }
 }
