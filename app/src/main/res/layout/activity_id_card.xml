@@ -282,6 +282,16 @@
             app:layout_constraintEnd_toEndOf="@+id/myview"
             app:srcCompat="@drawable/sign" />
 
+        <ImageView
+            android:id="@+id/imgStatus"
+            android:layout_width="33dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="152dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/myview"
+            tools:srcCompat="@tools:sample/avatars" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

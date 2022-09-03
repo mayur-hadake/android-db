@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         cpass = findViewById(R.id.edCpass);
         submit = findViewById(R.id.submit);
         gLogin = findViewById(R.id.login);
-        mb = findViewById(R.id.mb);
+        //mb = findViewById(R.id.mb);
         dbHelper = new DBHelp(this);
 
         submit.setOnClickListener(new View.OnClickListener() {

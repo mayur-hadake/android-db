@@ -91,6 +91,7 @@ public class DBHelp extends SQLiteOpenHelper {
         contentValues.put("stmobno",mobno);
         contentValues.put("stemail",email);
         contentValues.put("stadd",add);
+        contentValues.put("ststatus",0);
         Cursor cursor = db.rawQuery("select * from info where stid = ?",new String[] {id});
         if (cursor.getCount()>0) {
             long res = db.update("info", contentValues, "stid=?", new String[]{id});

@@ -5,7 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/box.xml" value="0.201" />
         <entry key="app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.2985" />
+        <entry key="app/src/main/res/drawable/ic_false.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_person.xml" value="0.201" />
+        <entry key="app/src/main/res/drawable/ic_questionmark.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_true.xml" value="0.213" />
         <entry key="app/src/main/res/layout/activity_fetch_data.xml" value="0.2115036231884058" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.19519519519519518" />
         <entry key="app/src/main/res/layout/activity_id_card.xml" value="0.33" />
@@ -13,7 +16,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.296180150128793" />
         <entry key="app/src/main/res/layout/activity_other_info.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/activity_select_login.xml" value="0.17497151692708332" />
-        <entry key="app/src/main/res/layout/singlerow.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/singlerow.xml" value="0.67" />
       </map>
     </option>
   </component>

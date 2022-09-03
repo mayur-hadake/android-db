@@ -29,7 +29,7 @@ import java.io.IOException;
 
 public class idCard extends AppCompatActivity {
     TextView idname,course,dob,bg,mobno,idemail,add;
-    ImageView idimg;
+    ImageView idimg,imgstatus;
     ImageButton downloadbtn;
     DBHelp db;
     private Bitmap bitmap;
@@ -52,6 +52,7 @@ public class idCard extends AppCompatActivity {
         add = findViewById(R.id.idadd);
         idimg = findViewById(R.id.idimg);
         downloadbtn = findViewById(R.id.downloadbtn);
+        imgstatus = findViewById(R.id.imgStatus);
 
         byte []dp = new byte[0];
 
@@ -85,6 +86,16 @@ public class idCard extends AppCompatActivity {
                 idimg.setImageBitmap(bitmap);
             }else {
                 idimg.setImageResource(R.drawable.ic_person);
+            }
+            int status = allinfo.getInt(12);
+            if (status == 0) {
+                imgstatus.setImageResource(R.drawable.ic_questionmark);
+            }
+            else if (status==1){
+                imgstatus.setImageResource(R.drawable.ic_true);
+            }
+            else {
+                imgstatus.setImageResource(R.drawable.ic_false);
             }
         }
     }
